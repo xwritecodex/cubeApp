@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cubicle</title>
+  <link href="/stylesheets/style.css" type="text/css" rel="stylesheet">
+  <link rel='shortcut icon' type='image/x-icon' href='/images/favicon.png' />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <ul>
+        <li><img class="logo" src="/images/logo.png"></li>
+        <li><a href="/">Browse</a></li>
+        <li><a href="/about">About</a></li>
+        {{#if validated}}
+        <li><a href="/create">Add Cube</a></li>
+        <li><a href="/createAccessory">Add Accessory</a></li>
+        <li><a href="/users/logout">Logout</a></li>
+        {{else}}
+        <li><a href="/users/login">Login</a></li>
+        <li><a href="/users/register">Register</a></li>
+        {{/if}}
+      </ul>
+    </header>
+    <main>
+      <h1>Browser</h1>
+      <form action="/search" method="GET">
+        <input type="text" class="search" name="search" placeholder="Search..." autofocus>
+        <input type="number" name="from" class="difficulty" placeholder="Difficulty from..." min="1" max="6">
+        <span>-</span>
+        <input type="number" name="to" class="difficulty" placeholder="Difficulty to..." min="1" max="6">
+        <input type="submit" value="search">
+      </form>
+
+      {{#each cubes }}
+      {{> cubeDiv cube = this}}
+      {{/each}}
+
+    </main>
+  </div>
+  <footer>@Cubicle: Exercise for Express.js and Handlebars</footer>
+</body>
+
+</html>
